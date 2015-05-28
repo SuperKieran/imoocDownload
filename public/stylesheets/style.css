@@ -1,0 +1,49 @@
+.contentLeft, .contentRight{
+    float: left;
+}
+
+.highlight {
+    color: #c33;
+}
+.course .content {
+    line-height: 22px;
+    margin-top: 20px;
+}
+.course .thumbnail {
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+}
+.course .thumbnail img {
+    width: 210px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    -o-transition-duration: 1s;
+}
+.course .thumbnail, .search-course .course .introduction {
+    float: left;
+    height: 120px;
+    margin-right: 10px;
+}
+.course .thumbnail img {
+    min-width: 200px;
+    height: 120px;
+    border: 0;
+}
+.course .thumbnail:hover img {
+    transform: scale(1.2);
+}
+.course .introduction {
+    margin-left: 10px;
+    margin-top: -4px;
+    font-size: 12px;
+    line-height: 24px;
+}
+.autowrap {
+    word-wrap: break-word;
+    word-break: break-all;
+}
