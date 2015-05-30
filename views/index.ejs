@@ -44,7 +44,7 @@
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-sm">
-                <li class="active"><a href="http://go.kieran.top">BLOG</a></li>
+                <li><a href="http://go.kieran.top">BLOG</a></li>
             </ul>
         </div>
     </div>
@@ -96,12 +96,17 @@
 <div class="container contentRight" style="width: 40%">
     <ul class="list-group"></ul>
 </div>
+<!-- Loading -->
+<div id="cover" class="cover"></div>
+<div class="sk-spinner sk-spinner-double-bounce">
+    <div class="sk-double-bounce1"></div>
+    <div class="sk-double-bounce2"></div>
+</div>
 <div class="container">
     <!-- 多说评论框 start -->
     <div class="ds-thread" data-thread-key="imooc" data-title="慕课下载工具" data-url=""></div>
     <!-- 多说评论框 end -->
 </div>
-
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
     var duoshuoQuery = {short_name:"kieran"};
@@ -117,12 +122,18 @@
 <!-- 多说公共JS代码 end -->
 <script>
     var searchCourse = function(){
+        $('#cover').show();
+        $('.sk-spinner.sk-spinner-double-bounce').show();
         $.post('/search', { keyword: $('#search').val() }, function(data){
             $('.contentLeft .list-group').empty();
             $('.contentLeft .list-group').append(data);
+            $('#cover').hide();
+            $('.sk-spinner.sk-spinner-double-bounce').hide();
         })
     }
     function sendCourse(idx){
+        $('#cover').show();
+        $('.sk-spinner.sk-spinner-double-bounce').show();
         $.post('/video', {
             lessionId: idx
         }, function(data){
@@ -136,6 +147,8 @@
                         +'</a></li>';
                 $('.contentRight .list-group').append(list);
             }
+            $('#cover').hide();
+            $('.sk-spinner.sk-spinner-double-bounce').hide();
         });
     }
     $('#search').on('change', searchCourse);
