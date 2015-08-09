@@ -17,19 +17,11 @@
     <meta name="apple-mobile-web-app-title" content="慕课网视频下载">
     <link rel="Shortcut Icon" href="images/favicon.png" type="image/png">
     <link rel="stylesheet" href="stylesheets/style.css"/>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- 百度统计 -->
-    <script>
-	var _hmt = _hmt || [];
-	(function() {
-	    var hm = document.createElement("script");
-	    hm.src = "//hm.baidu.com/hm.js?a50c98a0237f834ac6bfed6f25846668";
-	    var s = document.getElementsByTagName("script")[0]; 
-	    s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
+    <script src = "//hm.baidu.com/hm.js?a50c98a0237f834ac6bfed6f25846668" async></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -48,14 +40,14 @@
 
 
 
-                <form class="navbar-form navbar-left" role="search">
+                <div class="navbar-form navbar-left" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" id="search" placeholder="这里是搜索课程的">
                         <span class="input-group-btn">
                             <button class="btn btn-default" id="searchBtn" type="button">搜索</button>
                        </span>
                     </div>
-                </form>
+                </div>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-sm">
                 <li><a href="http://go.kieran.top">BLOG</a></li>
@@ -92,13 +84,13 @@
             </div>
         </div>
         <h2>一键批量下载，让下载视频更迅速、简单。</h2>
-        <form class="form-inline">
+        <div class="form-inline">
             <div class="form-group">
                 <label for="lessionId">http://www.imooc.com/learn/</label>
                 <input type="text" class="form-control" id="lessionId" placeholder="你也可以直接输入课程号">
             </div>
             <button type="button" class="btn btn-primary" id="send">发送课程号</button>
-        </form>
+        </div>
     </div>
 </div>
 <div class="container contentLeft" style="width: 60%">
@@ -166,9 +158,14 @@
         });
     }
     $('#search').on('change', searchCourse);
+    $('#lessionId').on('keydown', function(){
+        if(event.keyCode === 13){
+            sendCourse($('#lessionId').val());
+        }
+    });
     $('#searchBtn').on('click', searchCourse);
 
-    $('#send').on('click', function(){sendCourse($('#lessionId').val())});
+    $('#send').on('click', function(){sendCourse($('#lessionId').val());});
 </script>
 </body>
 </html>
