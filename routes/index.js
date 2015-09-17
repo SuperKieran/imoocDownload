@@ -18,7 +18,7 @@ router.post('/search', function(req, res, next){
             }
 
             var $ = cheerio.load(sres.text);
-            var ulList = $('#main .search-course ul li.course');
+            var ulList = $('#main .search-main ul li.course-item');
             var courseItem = '';
 
             for(var i=0;i<$(ulList).length;i++){
@@ -39,12 +39,14 @@ router.post('/search', function(req, res, next){
 router.post('/video', function(req, res, next) {
 
     superagent.get('http://www.imooc.com/learn/' + req.body.lessionId)
+        .set('Cookie', '"imooc_uuid=9c93963d-36d9-4a71-b85a-fa43129d05d6; Hm_lvt_f0cfcccd7b1393990c78efdeebff3968=1442505108,1442505223; loginstate=1; apsid=JhYzNiNGU4M2ZjYTQ4NGZlMzM0MzM0ZDI3MDJkYWIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjM2NTMwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0b29vbGJveUAxNjMuY29tAAAAAAAAAAAAAAAAAAAAADJhNWYyNGNiNWY3NmRhYjY3MTIyM2YwODI2ZDE3ZDc09uD6Vfbg%2BlU%3DZj; last_login_username=tooolboy%40163.com; cvde=55fae201600fb-6; Hm_lpvt_f0cfcccd7b1393990c78efdeebff3968=1442505266; PHPSESSID=cl4ltr2o97jc8k3gd0gl3hqi17"')
         .end(function(err, sres) {
             if (err) {
                 return next(err);
             }
             var $ = cheerio.load(sres.text);
-            var videoList = $('#main .course_chapter_list ul.video li a');
+
+            var videoList = $('.studyvideo');
 
             var ep = new eventproxy();
             var items = [];
