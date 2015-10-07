@@ -46,7 +46,7 @@ router.post('/video', function(req, res, next) {
             }
             var $ = cheerio.load(sres.text);
 
-            var videoList = $('.studyvideo');
+            var videoList = $('.video a');
 
             var ep = new eventproxy();
             var items = [];
