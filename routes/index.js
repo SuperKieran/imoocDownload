@@ -47,10 +47,17 @@ router.post('/video', function(req, res, next) {
             var $ = cheerio.load(sres.text);
 
             var videoList = $('.video a');
+            var temp = [];
+            console.log(videoList.length);
+            for (var i = 0; i < videoList.length; i++) {
+                if($(videoList[i]).attr('href').substring(0, 6) === '/video') {
+                    temp.push(videoList[i]);
+                }
+            }
 
             var ep = new eventproxy();
             var items = [];
-            ep.after('got_video', videoList.length, function(list) {
+            ep.after('got_video', temp.length, function(list) {
                 list.forEach(function(listItem) {
                     items.push({
                         title: listItem[0],
@@ -61,7 +68,7 @@ router.post('/video', function(req, res, next) {
                 res.send(items);
             });
 
-            videoList.each(function(idx, videoItem) {
+            temp.forEach(function(videoItem) {
                 videoUrl = "http://www.imooc.com/course/ajaxmediainfo/?mid=" + $(videoItem).attr('href').replace(/[^0-9]/ig, "");
                 superagent.get(videoUrl)
                     .end(function(err, res) {
