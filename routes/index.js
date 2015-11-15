@@ -40,6 +40,8 @@ router.post('/video', function(req, res, next) {
 
     superagent.get('http://www.imooc.com/learn/' + req.body.lessionId)
         .set('Cookie', 'PSTM=1444951074; BIDUPSID=8FA7E6806D1D12692ED2814C59E2C034; SIGNIN_UC=70a2711cf1d3d9b1a82d2f87d633bd8a01955973477; Hm_lvt_48aa793efee45092e5be8355226433d7=1446004018; Hm_lpvt_48aa793efee45092e5be8355226433d7=1446004018; H_WISE_SIDS=100040; BAIDUID=7BD93600157DF82A51868304E3FABEC0:FG=1; BDUSS=JkZDluMmNvY21GaFB2NnhoMDAxQzIzUW13dG1tUjZVdHhlRnItLTZvakJ5VzVXQVFBQUFBJCQAAAAAAAAAAAEAAABO9pkiaW1L1tjD-8HLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME8R1bBPEdWeW; H_PS_PSSID=11194_1423_17758_17619_13290_17900_17946_17783_17927_17970_17001_17072_15507_12124_16096_17421')
+        .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36')
+        .set('Referer', 'http://www.imooc.com')
         .end(function(err, sres) {
             if (err) {
                 return next(err);
@@ -48,7 +50,7 @@ router.post('/video', function(req, res, next) {
 
             var videoList = $('.video a');
             var temp = [];
-            console.log(videoList.length);
+            console.log('video length:' + videoList.length);
             for (var i = 0; i < videoList.length; i++) {
                 if($(videoList[i]).attr('href').substring(0, 6) === '/video') {
                     temp.push(videoList[i]);
@@ -64,7 +66,7 @@ router.post('/video', function(req, res, next) {
                         href: listItem[1]
                     });
                 })
-
+                console.log(items);
                 res.send(items);
             });
 
